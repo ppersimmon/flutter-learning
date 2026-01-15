@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'person.dart';
 
 void main() {
   runApp(const MyApp());
@@ -29,7 +30,7 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  Person person = Person(firstName: 'John', lastName: 'Doe');
+  final Person person = Person(firstName: 'John', lastName: 'Doe');
 
   @override
   Widget build(BuildContext context) {
@@ -42,25 +43,5 @@ class _MyHomePageState extends State<MyHomePage> {
         child: Text('${person.firstName} ${person.lastName}'),
       ),
     );
-  }
-}
-
-class Person {
-  String _firstName;
-  String _lastName;
-
-  Person({required String firstName, required String lastName})
-      : _firstName = firstName,
-        _lastName = lastName;
-
-  String get firstName => _firstName;
-  String get lastName => _lastName;
-
-  set firstName(String value) {
-    if (value.isNotEmpty) _firstName = value;
-  }
-
-  set lastName(String value) {
-    if (value.isNotEmpty) _lastName = value;
   }
 }
