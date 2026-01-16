@@ -17,3 +17,18 @@ This repository contains my Flutter homework assignments and learning progress.
 * **Getters**.
 * **Setters**.
 </details>
+
+<details>
+<summary><strong>Lesson 2: Dart Basics – Syntax, Constructors, and Collections</strong></summary>
+
+**Task 1** Create a Dart application to demonstrate advanced language capabilities. The implementation must include the following Dart features:
+* **Syntactic sugar operators** (e.g., operator `??=`).
+* **Lambda functions** and **closures**.
+* **Default parameters** in functions or methods.
+* **Different types of constructors**:
+  * Factory constructor.
+  * Initializing constructor.
+* **Mixins**.
+* **The `assert` keyword**.
+* **Collections** (work with different types like List, Set, Map).
+</details>
