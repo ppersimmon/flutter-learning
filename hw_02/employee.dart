@@ -10,7 +10,7 @@ abstract class Employee {
       return switch (type) {
         'manager' => Manager(name: name, id: id, annualSalary: salary),
         'assistant'=> Assistant(name: name, id: id, hourlyRate: salary),
-        _ => throw ('Unknown type of employee')
+        _ => throw ArgumentError('Unknown type of employee: $type')
       };
     }
 
@@ -21,7 +21,7 @@ abstract class Employee {
       return 'ID: $id, $name.';
     }
 
-    String getMonthlyPay([double taxRate]);
+    String getMonthlyPay([double taxRate = 0.18]);
 }
 
 mixin AnnualSalaryWorker on Employee{
@@ -56,7 +56,7 @@ mixin HourlyWageWorker on Employee{
 
 class Manager extends Employee with AnnualSalaryWorker {
   Manager({required super.name, required super.id, required double annualSalary}) {
-        this._annualSalary = annualSalary;
+        this.annualSalary = annualSalary;
     }
 
   @override
@@ -66,7 +66,7 @@ class Manager extends Employee with AnnualSalaryWorker {
 }
 class Assistant extends Employee with HourlyWageWorker {
   Assistant({required super.name, required super.id, required double hourlyRate}) {
-        this._hourlyRate = hourlyRate;
+        this.hourlyRate = hourlyRate;
     }
   
   @override
