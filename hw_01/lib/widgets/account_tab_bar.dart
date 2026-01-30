@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import '../utils/constants.dart';
 
 class AccountTabBar extends StatelessWidget {
   const AccountTabBar({super.key});
@@ -7,7 +8,7 @@ class AccountTabBar extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       decoration: const BoxDecoration(
-        border: Border(bottom: BorderSide(color: Colors.grey, width: 0.1)),
+        border: Border(bottom: BorderSide(color: CColors.grey100, width: 0.1)),
       ),
       child: const TabBar(
         isScrollable: true,

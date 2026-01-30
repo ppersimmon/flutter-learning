@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:hw_01/widgets/post_item.dart';
+import '../widgets/post_item.dart';
 import '../widgets/app_bar.dart';
 import '../widgets/account_tab_bar.dart';
 import '../widgets/profile_info.dart';
+import '../utils/constants.dart';
 
 class AccountPage extends StatelessWidget {
   const AccountPage({super.key});
@@ -12,7 +13,7 @@ class AccountPage extends StatelessWidget {
     return DefaultTabController(
       length: 6,
       child: Scaffold(
-        backgroundColor: Colors.white,
+        backgroundColor: CColors.grey50,
         body: CustomScrollView(
           slivers: [
             const AccountAppBar(),
@@ -23,7 +24,7 @@ class AccountPage extends StatelessWidget {
 
             const SliverToBoxAdapter(
               child: Padding(
-                padding: EdgeInsets.only(top: 20.0),
+                padding: EdgeInsets.only(top: Sizes.p20),
                 child: AccountTabBar(),
               ),
             ),
@@ -34,7 +35,7 @@ class AccountPage extends StatelessWidget {
               }, childCount: 3),
             ),
 
-            const SliverToBoxAdapter(child: SizedBox(height: 40)),
+            const SliverToBoxAdapter(child: gapH40),
           ],
         ),
       ),

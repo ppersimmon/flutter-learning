@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import '../utils/constants.dart';
+import '../widgets/app_icon.dart';
 
 class UserAvatar extends StatelessWidget {
   final double radius;
@@ -6,7 +8,7 @@ class UserAvatar extends StatelessWidget {
 
   const UserAvatar({
     super.key,
-    this.radius = 50.0,
+    this.radius = Sizes.p40,
     this.avatarImgUrl,
 });
 
@@ -14,14 +16,14 @@ class UserAvatar extends StatelessWidget {
   Widget build(BuildContext context) {
     return CircleAvatar(
       radius: radius,
-      backgroundColor: Colors.white,
+      backgroundColor: CColors.grey50,
       child: CircleAvatar(
-        radius: radius - 4,
+        radius: radius - Sizes.p4,
         backgroundImage: avatarImgUrl != null
             ? AssetImage(avatarImgUrl!)
             : null,
         child: avatarImgUrl == null
-            ? Icon(Icons.person, size: radius, color: Colors.grey)
+            ? AppIcon(icon: Icons.person, size: radius, color: CColors.grey100)
             : null,
       ),
     );

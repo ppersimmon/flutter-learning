@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import '../utils/constants.dart';
 import 'user_avatar.dart';
 
 class AccountHeader extends StatelessWidget {
@@ -11,11 +12,11 @@ class AccountHeader extends StatelessWidget {
     return Stack(
       alignment: Alignment.bottomLeft,
       children: [
-        Container(color: Colors.white),
+        Container(color: CColors.grey50),
         Positioned.fill(
-          bottom: avatarRadius / 2 + 20,
+          bottom: avatarRadius,
           child: Container(
-            color: Colors.blue,
+            color: CColors.blue500,
             child: Image.asset(
               'assets/images/app_bar_bg.png',
               fit: BoxFit.cover,
@@ -24,7 +25,7 @@ class AccountHeader extends StatelessWidget {
         ),
 
         Padding(
-          padding: const EdgeInsets.only(left: 12.0),
+          padding: const EdgeInsets.only(left: Sizes.p12),
           child: UserAvatar(radius: avatarRadius),
         ),
       ],

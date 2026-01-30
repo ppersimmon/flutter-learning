@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'account_header.dart';
-import 'circle_icon.dart';
+import 'app_icon.dart';
+import '../utils/constants.dart';
 
 class AccountAppBar extends StatelessWidget {
   const AccountAppBar({super.key});
@@ -8,23 +9,23 @@ class AccountAppBar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SliverAppBar(
-      expandedHeight: 150.0,
+      expandedHeight: Sizes.p160,
       pinned: true,
-      backgroundColor: const Color(0xFF38b6ff),
+      backgroundColor: CColors.blue500,
 
-      leading: Center(child: CircleIcon(icon: Icons.arrow_back_rounded)),
+      leading: Center(child: AppIcon(icon: Icons.arrow_back_rounded, isFilled: true, onTap: () {Navigator.of(context).pop();})),
 
       actions: [
-        CircleIcon(icon: Icons.search_rounded),
-        const SizedBox(width: 8),
-        CircleIcon(icon: Icons.edit_outlined),
-        const SizedBox(width: 8),
-        CircleIcon(icon: Icons.more_vert_rounded),
-        const SizedBox(width: 8),
+        AppIcon(icon: Icons.search_rounded, isFilled: true,),
+        gapW8,
+        AppIcon(icon: Icons.edit_outlined, isFilled: true),
+        gapW8,
+        AppIcon(icon: Icons.more_vert_rounded, isFilled: true),
+        gapW8,
       ],
 
       flexibleSpace: FlexibleSpaceBar(
-        background: AccountHeader(avatarRadius: 40),
+        background: AccountHeader(avatarRadius: Sizes.p40),
       ),
     );
   }
