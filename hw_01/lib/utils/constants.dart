@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+
 import 'pixel_sizer.dart';
 
 class Sizes {
@@ -113,4 +114,8 @@ class CColors {
   static const Color red = Colors.red;
   static const Color outline = Color.fromRGBO(0, 0, 0, 0.6);
   static const Color transparent = Colors.transparent;
+}
+
+class CImage {
+  static const String defaultPostImage = 'assets/images/post_img.jpg';
 }

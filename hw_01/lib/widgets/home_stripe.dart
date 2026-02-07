@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
-import '../widgets/post_item.dart';
+import 'package:hw_01/mock_data/get_mock_post.dart';
+
+import '../helper/list_post.dart';
 import 'home_app_bar.dart';
 
 class HomeStripe extends StatelessWidget {
@@ -7,6 +9,7 @@ class HomeStripe extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final storage = MockPostStorage();
     return DefaultTabController(
       length: 2,
       child: NestedScrollView(
@@ -16,18 +19,23 @@ class HomeStripe extends StatelessWidget {
         },
         body: TabBarView(
           children: [
-            ListView.builder(
-              padding: EdgeInsets.zero,
-              itemCount: 10,
-              itemBuilder: (context, index) {
-                return PostItem();
+            FutureBuilder(
+              future: storage.fetch(),
+              builder: (context, snapshot) {
+                if (snapshot.hasData) {
+                  return ListPost(posts: snapshot.data!);
+                }
+                return CircularProgressIndicator();
               },
             ),
-            ListView.builder(
-              padding: EdgeInsets.zero,
-              itemCount: 10,
-              itemBuilder: (context, index) {
-                return const PostItem();
+
+            FutureBuilder(
+              future: storage.fetch(),
+              builder: (context, snapshot) {
+                if (snapshot.hasData) {
+                  return ListPost(posts: snapshot.data!);
+                }
+                return CircularProgressIndicator();
               },
             ),
           ],

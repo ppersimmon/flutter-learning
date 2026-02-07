@@ -1,4 +1,7 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+
+import '../generated/locale_keys.g.dart';
 import '../utils/constants.dart';
 
 class AccountTabBar extends StatelessWidget {
@@ -10,7 +13,7 @@ class AccountTabBar extends StatelessWidget {
       decoration: const BoxDecoration(
         border: Border(bottom: BorderSide(color: CColors.grey100, width: 0.1)),
       ),
-      child: const TabBar(
+      child: TabBar(
         isScrollable: true,
         labelColor: Colors.black,
         unselectedLabelColor: Colors.grey,
@@ -20,12 +23,12 @@ class AccountTabBar extends StatelessWidget {
         tabAlignment: TabAlignment.start,
 
         tabs: [
-          Tab(text: 'Posts'),
-          Tab(text: 'Replies'),
-          Tab(text: 'Highlights'),
-          Tab(text: 'Articles'),
-          Tab(text: 'Media'),
-          Tab(text: 'Likes'),
+          Tab(text: LocaleKeys.tabs_posts.tr()),
+          Tab(text: LocaleKeys.tabs_replies.tr()),
+          Tab(text: LocaleKeys.tabs_highlights.tr()),
+          Tab(text: LocaleKeys.tabs_articles.tr()),
+          Tab(text: LocaleKeys.tabs_media.tr()),
+          Tab(text: LocaleKeys.tabs_likes.tr()),
         ],
       ),
     );

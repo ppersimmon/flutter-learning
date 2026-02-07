@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
+
 import '../utils/constants.dart';
-import '../widgets/home_stripe.dart';
 import '../widgets/app_icon.dart';
 import '../widgets/drawer.dart';
+import '../widgets/home_stripe.dart';
+
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
 
@@ -17,9 +19,9 @@ class _HomePageState extends State<HomePage> {
 
   static const List<Widget> _pages = [
     HomeStripe(),
-    Scaffold(backgroundColor: CColors.grey50, body: Center(child: Text('Search'))),
-    Scaffold(backgroundColor: CColors.grey50, body: Center(child: Text('Notifications'))),
-    Scaffold(backgroundColor: CColors.grey50, body: Center(child: Text('Messages'))),
+    Scaffold(backgroundColor: CColors.grey50),
+    Scaffold(backgroundColor: CColors.grey50),
+    Scaffold(backgroundColor: CColors.grey50),
   ];
 
   void _onItemTapped(int index) {

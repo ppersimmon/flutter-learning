@@ -1,6 +1,9 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:hw_01/generated/locale_keys.g.dart';
+
 import '../utils/constants.dart';
 import 'app_icon.dart';
 
@@ -20,7 +23,12 @@ class HomeAppBar extends StatelessWidget {
 
       backgroundColor: CColors.grey50,
 
-      leading: AppIcon(icon: Icons.account_circle_outlined, onTap: () {Scaffold.of(context).openDrawer();}),
+      leading: AppIcon(
+        icon: Icons.account_circle_outlined,
+        onTap: () {
+          Scaffold.of(context).openDrawer();
+        },
+      ),
 
       title: AppIcon(icon: FontAwesomeIcons.xTwitter),
       centerTitle: true,
@@ -34,21 +42,21 @@ class HomeAppBar extends StatelessWidget {
               fontWeight: FontWeight.bold,
             ),
           ),
-          child: const Text('Upgrade'),
+          child: Text(LocaleKeys.appBar_upgrade.tr()),
         ),
 
         AppIcon(icon: Icons.more_vert_rounded),
         gapW8,
       ],
 
-      bottom: const TabBar(
+      bottom: TabBar(
         indicatorSize: TabBarIndicatorSize.tab,
         labelColor: CColors.black,
         indicatorColor: CColors.blue500,
         indicatorWeight: Sizes.p2,
         tabs: [
-          Tab(text: 'For you'),
-          Tab(text: 'Following'),
+          Tab(text: LocaleKeys.appBar_for_you.tr()),
+          Tab(text: LocaleKeys.appBar_following.tr()),
         ],
       ),
     );

@@ -1,4 +1,7 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+import 'package:hw_01/generated/locale_keys.g.dart';
+
 import '../pages/account.dart';
 import '../utils/constants.dart';
 import 'app_icon.dart';
@@ -12,7 +15,6 @@ class NavDrawer extends StatefulWidget {
 }
 
 class _NavDrawerState extends State<NavDrawer> {
-
   @override
   Widget build(BuildContext context) {
     return Drawer(
@@ -21,17 +23,31 @@ class _NavDrawerState extends State<NavDrawer> {
         children: [
           const UserAccountsDrawerHeader(
             decoration: BoxDecoration(color: CColors.grey50),
-            accountName: Text("admin", style: TextStyle(color: CColors.black, fontWeight: FontWeight.bold)),
-            accountEmail: Text("@admin", style: TextStyle(color: CColors.black, fontWeight: FontWeight.bold)),
-            currentAccountPicture: UserAvatar()
+            accountName: Text(
+              "admin",
+              style: TextStyle(
+                color: CColors.black,
+                fontWeight: FontWeight.bold,
+              ),
+            ),
+            accountEmail: Text(
+              "@admin",
+              style: TextStyle(
+                color: CColors.black,
+                fontWeight: FontWeight.bold,
+              ),
+            ),
+            currentAccountPicture: UserAvatar(),
           ),
 
           ListTile(
             leading: const AppIcon(icon: Icons.person_outline),
-            title: const Text('Profile'),
+            title: Text(LocaleKeys.title_profile.tr()),
             onTap: () {
               Navigator.pop(context);
-              Navigator.of(context).push(MaterialPageRoute(builder: (context) => AccountPage()));
+              Navigator.of(
+                context,
+              ).push(MaterialPageRoute(builder: (context) => AccountPage()));
             },
           ),
         ],

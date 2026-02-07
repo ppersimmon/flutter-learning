@@ -1,4 +1,8 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+import 'package:hw_01/generated/locale_keys.g.dart';
+
+import '../mock_data/mock_data.dart';
 import '../utils/constants.dart';
 
 class ProfileInfo extends StatelessWidget {
@@ -12,16 +16,13 @@ class ProfileInfo extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           gapH8,
-          const Text(
-            'Admin',
-            style: TextStyle(
-              fontSize: 24,
-              fontWeight: FontWeight.bold,
-            ),
+          Text(
+            user.profileName,
+            style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
           ),
           gapH8,
-          const Text(
-            '@admin',
+          Text(
+            user.userName,
             style: TextStyle(fontSize: 16, color: CColors.grey100),
           ),
           gapH40,
@@ -29,8 +30,10 @@ class ProfileInfo extends StatelessWidget {
             children: [
               Icon(Icons.cake, size: Sizes.p16, color: CColors.grey100),
               gapW8,
-              const Text(
-                'Born 1 January 2000 ',
+              Text(
+                LocaleKeys.profile_info_born_data.tr(
+                  args: [user.bornDate ?? LocaleKeys.empty_string.tr()],
+                ),
                 style: TextStyle(fontSize: 16, color: CColors.grey100),
               ),
             ],
@@ -44,8 +47,8 @@ class ProfileInfo extends StatelessWidget {
                 color: CColors.grey100,
               ),
               gapW8,
-              const Text(
-                'Joined January 2021 ',
+              Text(
+                LocaleKeys.profile_info_join_data.tr(args: [user.joinDate]),
                 style: TextStyle(fontSize: 16, color: CColors.grey100),
               ),
               Icon(
@@ -58,8 +61,8 @@ class ProfileInfo extends StatelessWidget {
           gapH12,
           Row(
             children: [
-              const Text(
-                '66.6K',
+              Text(
+                user.following.toString(),
                 style: TextStyle(
                   fontSize: 16,
                   color: CColors.black,
@@ -67,13 +70,13 @@ class ProfileInfo extends StatelessWidget {
                 ),
               ),
               gapW8,
-              const Text(
-                'Following',
+              Text(
+                LocaleKeys.following.tr(),
                 style: TextStyle(fontSize: 16, color: CColors.grey100),
               ),
               gapW24,
-              const Text(
-                '666',
+              Text(
+                user.followers.toString(),
                 style: TextStyle(
                   fontSize: 16,
                   color: CColors.black,
@@ -81,8 +84,8 @@ class ProfileInfo extends StatelessWidget {
                 ),
               ),
               gapW8,
-              const Text(
-                'Followers',
+              Text(
+                LocaleKeys.followers.tr(),
                 style: TextStyle(fontSize: 16, color: CColors.grey100),
               ),
             ],

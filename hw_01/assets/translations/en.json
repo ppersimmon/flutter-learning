@@ -1,0 +1,29 @@
+{
+  "tabs": {
+    "posts": "Posts",
+    "replies": "Replies",
+    "highlights": "Highlights",
+    "articles": "Articles",
+    "media": "Media",
+    "likes": "Likes"
+  },
+  "title_profile": "Profile",
+
+  "appBar": {
+    "upgrade": "Upgrade",
+    "for_you": "For you",
+    "following": "Following"
+  },
+
+  "profile_info": {
+    "born_data": "Born {}",
+    "join_data": "Joined {}"
+  },
+
+  "following": "Following",
+  "followers": "Followers",
+
+  "empty_string": "",
+  "divider": " · ",
+  "error": "Error"
+}
