@@ -2,7 +2,7 @@
 
 // ignore_for_file: constant_identifier_names
 
-abstract class LocaleKeys {
+abstract class  LocaleKeys {
   static const tabs_posts = 'tabs.posts';
   static const tabs_replies = 'tabs.replies';
   static const tabs_highlights = 'tabs.highlights';
@@ -20,7 +20,8 @@ abstract class LocaleKeys {
   static const profile_info = 'profile_info';
   static const following = 'following';
   static const followers = 'followers';
-  static const empty_string = "";
-  static const divider = " · ";
-  static const error = "error";
+  static const empty_string = 'empty_string';
+  static const divider = 'divider';
+  static const error = 'error';
+
 }

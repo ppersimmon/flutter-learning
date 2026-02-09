@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
+import 'package:hw_01/mock_data/post.dart';
 
+import '../mock_data/mock_data.dart';
 import '../utils/constants.dart';
 import '../widgets/app_icon.dart';
 import '../widgets/drawer.dart';
@@ -16,13 +18,13 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> {
   int _selectedIndex = 0;
   bool _isBottomBarVisible = true;
+  List<Post> _posts = [];
 
-  static const List<Widget> _pages = [
-    HomeStripe(),
-    Scaffold(backgroundColor: CColors.grey50),
-    Scaffold(backgroundColor: CColors.grey50),
-    Scaffold(backgroundColor: CColors.grey50),
-  ];
+  @override
+  void initState() {
+    super.initState();
+    _posts = List.from(postsExamples);
+  }
 
   void _onItemTapped(int index) {
     setState(() {
@@ -31,10 +33,36 @@ class _HomePageState extends State<HomePage> {
     });
   }
 
+  void _switchLike(String postId) {
+    setState(() {
+      final index = _posts.indexWhere((p) => p.id == postId);
+      if (index != -1) {
+        final currentPost = _posts[index];
+        final newIsLiked = !currentPost.isLiked;
+
+        _posts[index] = currentPost.copyWith(
+          isLiked: newIsLiked,
+          likes: newIsLiked ? currentPost.likes + 1 : currentPost.likes - 1,
+        );
+      }
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
+    final List<Widget> pages = [
+      HomeStripe(posts: _posts, setLikeSwitcher: _switchLike),
+      const Scaffold(backgroundColor: CColors.grey50),
+      const Scaffold(backgroundColor: CColors.grey50),
+      const Scaffold(backgroundColor: CColors.grey50),
+    ];
+
     return Scaffold(
-      drawer: const NavDrawer(),
+      drawer: NavDrawer(
+        user: user,
+        posts: _posts,
+        setLikeSwitcher: _switchLike,
+      ),
       body: NotificationListener<UserScrollNotification>(
         onNotification: (notification) {
           if (notification.direction == ScrollDirection.reverse &&
@@ -46,7 +74,7 @@ class _HomePageState extends State<HomePage> {
           }
           return true;
         },
-        child: IndexedStack(index: _selectedIndex, children: _pages),
+        child: IndexedStack(index: _selectedIndex, children: pages),
       ),
 
       floatingActionButton: AnimatedScale(

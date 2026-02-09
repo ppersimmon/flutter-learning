@@ -1,15 +1,20 @@
 import 'package:flutter/material.dart';
-import 'package:hw_01/mock_data/get_mock_post.dart';
+import 'package:hw_01/mock_data/post.dart';
 
 import '../helper/list_post.dart';
 import 'home_app_bar.dart';
 
 class HomeStripe extends StatelessWidget {
-  const HomeStripe({super.key});
+  final List<Post> posts;
+  final Function(String) setLikeSwitcher;
+  const HomeStripe({
+    super.key,
+    required this.posts,
+    required this.setLikeSwitcher,
+  });
 
   @override
   Widget build(BuildContext context) {
-    final storage = MockPostStorage();
     return DefaultTabController(
       length: 2,
       child: NestedScrollView(
@@ -19,25 +24,8 @@ class HomeStripe extends StatelessWidget {
         },
         body: TabBarView(
           children: [
-            FutureBuilder(
-              future: storage.fetch(),
-              builder: (context, snapshot) {
-                if (snapshot.hasData) {
-                  return ListPost(posts: snapshot.data!);
-                }
-                return CircularProgressIndicator();
-              },
-            ),
-
-            FutureBuilder(
-              future: storage.fetch(),
-              builder: (context, snapshot) {
-                if (snapshot.hasData) {
-                  return ListPost(posts: snapshot.data!);
-                }
-                return CircularProgressIndicator();
-              },
-            ),
+            ListPost(posts: posts, setLikeSwitcher: setLikeSwitcher),
+            ListPost(posts: posts, setLikeSwitcher: setLikeSwitcher),
           ],
         ),
       ),

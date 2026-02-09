@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:hw_01/mock_data/get_mock_post.dart';
 
+import '../mock_data/mock_data.dart';
 import '../mock_data/post.dart';
 import '../utils/constants.dart';
 import '../widgets/account_tab_bar.dart';
@@ -8,12 +8,23 @@ import '../widgets/app_bar.dart';
 import '../widgets/post_item.dart';
 import '../widgets/profile_info.dart';
 
-class AccountPage extends StatelessWidget {
-  const AccountPage({super.key});
+class AccountPage extends StatefulWidget {
+  final List<Post> posts;
+  final Function(String) setLikeSwitcher;
+  const AccountPage({
+    super.key,
+    required this.posts,
+    required this.setLikeSwitcher,
+  });
 
   @override
+  State<AccountPage> createState() => _AccountPageState();
+}
+
+class _AccountPageState extends State<AccountPage> {
+  @override
   Widget build(BuildContext context) {
-    final storage = MockPostStorage();
+    final displayPosts = widget.posts;
     return DefaultTabController(
       length: 6,
       child: Scaffold(
@@ -22,7 +33,7 @@ class AccountPage extends StatelessWidget {
           slivers: [
             const AccountAppBar(),
 
-            SliverToBoxAdapter(child: ProfileInfo()),
+            SliverToBoxAdapter(child: ProfileInfo(user: user)),
 
             const SliverToBoxAdapter(
               child: Padding(
@@ -31,32 +42,27 @@ class AccountPage extends StatelessWidget {
               ),
             ),
 
-            FutureBuilder<List<Post>>(
-              future: storage.fetch(),
-              builder: (context, snapshot) {
-                if (snapshot.connectionState == ConnectionState.waiting) {
-                  return const SliverToBoxAdapter(
-                    child: Padding(
-                      padding: EdgeInsets.only(top: Sizes.p40),
-                      child: Center(child: CircularProgressIndicator()),
-                    ),
-                  );
-                }
-                if (snapshot.hasError) {
-                  return SliverToBoxAdapter(
-                    child: Center(child: Text("Error")),
-                  );
-                }
+            if (displayPosts.isEmpty)
+              const SliverToBoxAdapter(
+                child: Padding(
+                  padding: EdgeInsets.only(top: Sizes.p40),
+                  child: Center(child: CircularProgressIndicator()),
+                ),
+              )
+            else
+              SliverList(
+                delegate: SliverChildBuilderDelegate((context, index) {
+                  final post = displayPosts[index];
 
-                final posts = snapshot.data ?? [];
-
-                return SliverList(
-                  delegate: SliverChildBuilderDelegate((context, index) {
-                    return PostItem(post: posts[index]);
-                  }, childCount: posts.length),
-                );
-              },
-            ),
+                  return PostItem(
+                    post: post,
+                    setLike: () {
+                      widget.setLikeSwitcher(post.id);
+                      setState(() {});
+                    },
+                  );
+                }, childCount: displayPosts.length),
+              ),
             const SliverToBoxAdapter(child: gapH40),
           ],
         ),

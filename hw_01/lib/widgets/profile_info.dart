@@ -1,12 +1,13 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:hw_01/generated/locale_keys.g.dart';
+import 'package:hw_01/mock_data/user_profile.dart';
 
-import '../mock_data/mock_data.dart';
 import '../utils/constants.dart';
 
 class ProfileInfo extends StatelessWidget {
-  const ProfileInfo({super.key});
+  final UserProfile user;
+  const ProfileInfo({super.key, required this.user});
 
   @override
   Widget build(BuildContext context) {

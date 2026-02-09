@@ -13,6 +13,7 @@ final UserProfile user = UserProfile(
 
 final List<Post> postsExamples = [
   Post(
+    id: "1",
     author: user,
     createdAt: DateTime.now(),
     description: 'Really funny post',
@@ -22,6 +23,7 @@ final List<Post> postsExamples = [
     views: 666,
   ),
   Post(
+    id: "2",
     author: user,
     createdAt: DateTime.now(),
     description: 'Really funny post',
@@ -31,6 +33,7 @@ final List<Post> postsExamples = [
     views: 646,
   ),
   Post(
+    id: "3",
     author: user,
     createdAt: DateTime.now(),
     description: 'Really funny post',
@@ -40,6 +43,7 @@ final List<Post> postsExamples = [
     views: 1000,
   ),
   Post(
+    id: "4",
     author: user,
     createdAt: DateTime.now(),
     description: 'Really funny post',

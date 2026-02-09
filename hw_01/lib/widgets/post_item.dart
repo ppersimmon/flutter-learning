@@ -6,13 +6,15 @@ import 'package:hw_01/generated/locale_keys.g.dart';
 import '../helper/change_date_format.dart';
 import '../mock_data/post.dart';
 import '../utils/constants.dart';
+import 'like_button.dart';
 import 'post_action_button.dart';
 import 'user_avatar.dart';
 
 class PostItem extends StatelessWidget {
   final Post post;
+  final Function() setLike;
 
-  const PostItem({super.key, required this.post});
+  const PostItem({super.key, required this.post, required this.setLike});
 
   @override
   Widget build(BuildContext context) {
@@ -134,10 +136,10 @@ class PostItem extends StatelessWidget {
                       icon: FontAwesomeIcons.retweet,
                       label: post.reposts.toString(),
                     ),
-                    PostActionButton(
-                      icon: FontAwesomeIcons.heart,
-                      label: post.likes.toString(),
-                      color: CColors.red,
+                    LikeButton(
+                      likes: post.likes,
+                      isLiked: post.isLiked,
+                      onTap: setLike,
                     ),
                     PostActionButton(
                       icon: FontAwesomeIcons.chartSimple,
