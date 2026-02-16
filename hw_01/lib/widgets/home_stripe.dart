@@ -6,12 +6,7 @@ import 'home_app_bar.dart';
 
 class HomeStripe extends StatelessWidget {
   final List<Post> posts;
-  final Function(String) setLikeSwitcher;
-  const HomeStripe({
-    super.key,
-    required this.posts,
-    required this.setLikeSwitcher,
-  });
+  const HomeStripe({super.key, required this.posts});
 
   @override
   Widget build(BuildContext context) {
@@ -24,8 +19,8 @@ class HomeStripe extends StatelessWidget {
         },
         body: TabBarView(
           children: [
-            ListPost(posts: posts, setLikeSwitcher: setLikeSwitcher),
-            ListPost(posts: posts, setLikeSwitcher: setLikeSwitcher),
+            ListPost(posts: posts),
+            ListPost(posts: posts),
           ],
         ),
       ),

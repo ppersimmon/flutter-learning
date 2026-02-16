@@ -1,30 +1,20 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 import '../mock_data/mock_data.dart';
-import '../mock_data/post.dart';
+import '../models/post_model.dart';
 import '../utils/constants.dart';
 import '../widgets/account_tab_bar.dart';
 import '../widgets/app_bar.dart';
 import '../widgets/post_item.dart';
 import '../widgets/profile_info.dart';
 
-class AccountPage extends StatefulWidget {
-  final List<Post> posts;
-  final Function(String) setLikeSwitcher;
-  const AccountPage({
-    super.key,
-    required this.posts,
-    required this.setLikeSwitcher,
-  });
+class AccountPage extends StatelessWidget {
+  const AccountPage({super.key});
 
-  @override
-  State<AccountPage> createState() => _AccountPageState();
-}
-
-class _AccountPageState extends State<AccountPage> {
   @override
   Widget build(BuildContext context) {
-    final displayPosts = widget.posts;
+    final displayPosts = Provider.of<PostModel>(context).posts;
     return DefaultTabController(
       length: 6,
       child: Scaffold(
@@ -54,13 +44,7 @@ class _AccountPageState extends State<AccountPage> {
                 delegate: SliverChildBuilderDelegate((context, index) {
                   final post = displayPosts[index];
 
-                  return PostItem(
-                    post: post,
-                    setLike: () {
-                      widget.setLikeSwitcher(post.id);
-                      setState(() {});
-                    },
-                  );
+                  return PostItem(post: post);
                 }, childCount: displayPosts.length),
               ),
             const SliverToBoxAdapter(child: gapH40),

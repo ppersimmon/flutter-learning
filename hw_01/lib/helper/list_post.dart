@@ -4,13 +4,8 @@ import 'package:hw_01/widgets/post_item.dart';
 
 class ListPost extends StatelessWidget {
   final List<Post> posts;
-  final Function(String) setLikeSwitcher;
 
-  const ListPost({
-    super.key,
-    required this.posts,
-    required this.setLikeSwitcher,
-  });
+  const ListPost({super.key, required this.posts});
 
   @override
   Widget build(BuildContext context) {
@@ -19,10 +14,7 @@ class ListPost extends StatelessWidget {
       itemCount: posts.length,
       itemBuilder: (context, index) {
         final currentPost = posts[index];
-        return PostItem(
-          post: currentPost,
-          setLike: () => setLikeSwitcher(currentPost.id),
-        );
+        return PostItem(post: currentPost);
       },
     );
   }

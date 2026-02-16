@@ -1,7 +1,9 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 import '../pages/home.dart';
+import 'models/post_model.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -12,7 +14,10 @@ void main() async {
       supportedLocales: [Locale('en')],
       path: 'assets/translations',
       fallbackLocale: Locale('en'),
-      child: MyApp(),
+      child: ChangeNotifierProvider(
+        create: (context) => PostModel(),
+        child: MyApp(),
+      ),
     ),
   );
 }

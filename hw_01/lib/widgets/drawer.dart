@@ -1,7 +1,6 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:hw_01/generated/locale_keys.g.dart';
-import 'package:hw_01/mock_data/post.dart';
 import 'package:hw_01/mock_data/user_profile.dart';
 
 import '../pages/account.dart';
@@ -11,14 +10,7 @@ import 'user_avatar.dart';
 
 class NavDrawer extends StatelessWidget {
   final UserProfile user;
-  final List<Post> posts;
-  final Function(String) setLikeSwitcher;
-  const NavDrawer({
-    super.key,
-    required this.user,
-    required this.posts,
-    required this.setLikeSwitcher,
-  });
+  const NavDrawer({super.key, required this.user});
 
   @override
   Widget build(BuildContext context) {
@@ -50,14 +42,9 @@ class NavDrawer extends StatelessWidget {
             title: Text(LocaleKeys.title_profile.tr()),
             onTap: () {
               Navigator.pop(context);
-              Navigator.of(context).push(
-                MaterialPageRoute(
-                  builder: (context) => AccountPage(
-                    posts: posts,
-                    setLikeSwitcher: setLikeSwitcher,
-                  ),
-                ),
-              );
+              Navigator.of(
+                context,
+              ).push(MaterialPageRoute(builder: (context) => AccountPage()));
             },
           ),
         ],
