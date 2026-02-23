@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
-import 'package:provider/provider.dart';
 
 import '../mock_data/mock_data.dart';
-import '../models/post_model.dart';
 import '../utils/constants.dart';
 import '../widgets/app_icon.dart';
 import '../widgets/drawer.dart';
@@ -20,11 +18,11 @@ class _HomePageState extends State<HomePage> {
   int _selectedIndex = 0;
   bool _isBottomBarVisible = true;
 
-  List<Widget> get _pages => [
-    HomeStripe(posts: Provider.of<PostModel>(context).posts),
-    const Scaffold(),
-    const Scaffold(),
-    const Scaffold(),
+  List<Widget> get _pages => const [
+    HomeStripe(),
+    Scaffold(),
+    Scaffold(),
+    Scaffold(),
   ];
 
   void _onItemTapped(int index) {

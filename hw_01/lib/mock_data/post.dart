@@ -25,6 +25,21 @@ class Post {
     this.isLiked = false,
   });
 
+  factory Post.fromJson(Map<String, dynamic> json) {
+    return Post(
+      id: json['id'].toString(),
+      description: json['body'],
+      createdAt: DateTime.now(),
+
+      author: UserProfile(
+        id: json['userId'],
+        userName: '@user_${json['userId']}',
+        profileName: json['userId'].toString(),
+        joinDate: 'January 2020',
+      ),
+    );
+  }
+
   Post copyWith({
     String? id,
     UserProfile? author,
