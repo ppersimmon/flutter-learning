@@ -2,9 +2,10 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:hw_01/generated/locale_keys.g.dart';
 import 'package:hw_01/mock_data/user_profile.dart';
+import 'package:hw_01/models/theme_model.dart';
+import 'package:provider/provider.dart';
 
 import '../pages/account.dart';
-import '../utils/constants.dart';
 import 'app_icon.dart';
 import 'user_avatar.dart';
 
@@ -14,37 +15,56 @@ class NavDrawer extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Drawer(
-      backgroundColor: CColors.grey50,
-      child: ListView(
-        children: [
-          UserAccountsDrawerHeader(
-            decoration: BoxDecoration(color: CColors.grey50),
-            accountName: Text(
-              user.profileName,
-              style: TextStyle(
-                color: CColors.black,
-                fontWeight: FontWeight.bold,
-              ),
-            ),
-            accountEmail: Text(
-              user.userName,
-              style: TextStyle(
-                color: CColors.black,
-                fontWeight: FontWeight.bold,
-              ),
-            ),
-            currentAccountPicture: UserAvatar(),
-          ),
+    final themeState = Provider.of<ThemeModel>(context);
 
+    return Drawer(
+      child: Column(
+        children: [
+          Expanded(
+            child: ListView(
+              children: [
+                UserAccountsDrawerHeader(
+                  decoration: BoxDecoration(
+                    color: Theme.of(context).colorScheme.surface,
+                  ),
+                  accountName: Text(
+                    user.profileName,
+                    style: TextStyle(
+                      color: Theme.of(context).colorScheme.onSurface,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                  accountEmail: Text(
+                    user.userName,
+                    style: TextStyle(
+                      color: Theme.of(context).colorScheme.onSurface,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                  currentAccountPicture: UserAvatar(),
+                ),
+
+                ListTile(
+                  leading: const AppIcon(icon: Icons.person_outline),
+                  title: Text(LocaleKeys.title_profile.tr()),
+                  onTap: () {
+                    Navigator.pop(context);
+                    Navigator.of(context).push(
+                      MaterialPageRoute(builder: (context) => AccountPage()),
+                    );
+                  },
+                ),
+              ],
+            ),
+          ),
           ListTile(
-            leading: const AppIcon(icon: Icons.person_outline),
-            title: Text(LocaleKeys.title_profile.tr()),
+            leading: AppIcon(
+              icon: themeState.getDarkTheme
+                  ? Icons.dark_mode_outlined
+                  : Icons.light_mode_outlined,
+            ),
             onTap: () {
-              Navigator.pop(context);
-              Navigator.of(
-                context,
-              ).push(MaterialPageRoute(builder: (context) => AccountPage()));
+              themeState.setDarkTheme = !themeState.getDarkTheme;
             },
           ),
         ],

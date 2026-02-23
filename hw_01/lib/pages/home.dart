@@ -22,9 +22,9 @@ class _HomePageState extends State<HomePage> {
 
   List<Widget> get _pages => [
     HomeStripe(posts: Provider.of<PostModel>(context).posts),
-    const Scaffold(backgroundColor: CColors.grey50),
-    const Scaffold(backgroundColor: CColors.grey50),
-    const Scaffold(backgroundColor: CColors.grey50),
+    const Scaffold(),
+    const Scaffold(),
+    const Scaffold(),
   ];
 
   void _onItemTapped(int index) {
@@ -58,7 +58,7 @@ class _HomePageState extends State<HomePage> {
 
         child: FloatingActionButton(
           onPressed: () {},
-          backgroundColor: CColors.blue500,
+          backgroundColor: Theme.of(context).colorScheme.primary,
           shape: const CircleBorder(),
           child: const Icon(Icons.add, color: CColors.grey50, size: Sizes.p26),
         ),
@@ -76,7 +76,7 @@ class _HomePageState extends State<HomePage> {
               onTap: _onItemTapped,
               showSelectedLabels: false,
               showUnselectedLabels: false,
-              backgroundColor: CColors.grey50,
+              backgroundColor: Theme.of(context).colorScheme.surface,
               items: const [
                 BottomNavigationBarItem(
                   icon: AppIcon(icon: Icons.home_outlined),

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+
 import '../utils/constants.dart';
 import 'user_avatar.dart';
 
@@ -12,7 +13,7 @@ class AccountHeader extends StatelessWidget {
     return Stack(
       alignment: Alignment.bottomLeft,
       children: [
-        Container(color: CColors.grey50),
+        Container(color: Theme.of(context).colorScheme.surface),
         Positioned.fill(
           bottom: avatarRadius,
           child: Container(

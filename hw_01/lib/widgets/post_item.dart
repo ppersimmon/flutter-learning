@@ -16,7 +16,6 @@ class PostItem extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       decoration: const BoxDecoration(
-        color: CColors.grey50,
         border: Border(bottom: BorderSide(color: CColors.grey100, width: 0.2)),
       ),
       padding: const EdgeInsets.all(Sizes.p12),

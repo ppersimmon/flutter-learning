@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+
 import '../utils/constants.dart';
 
 class AppIcon extends StatelessWidget {
@@ -21,9 +22,11 @@ class AppIcon extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final setIconColor = color ?? (isFilled ? CColors.grey50 : CColors.black);
-    final setIconBackground = background ??
-        (isFilled ? CColors.outline : CColors.transparent);
+    final themeColors = Theme.of(context).colorScheme;
+    final setIconColor =
+        color ?? (isFilled ? themeColors.surface : themeColors.onSurface);
+    final setIconBackground =
+        background ?? (isFilled ? CColors.outline : CColors.transparent);
 
     return Container(
       padding: const EdgeInsets.all(Sizes.p8),
@@ -35,13 +38,9 @@ class AppIcon extends StatelessWidget {
         color: CColors.transparent,
         child: InkWell(
           onTap: onTap,
-            child: Icon(
-              icon,
-              color: setIconColor,
-              size: size ?? Sizes.p24,
-            ),
+          child: Icon(icon, color: setIconColor, size: size ?? Sizes.p24),
         ),
-          ),
+      ),
     );
   }
 }

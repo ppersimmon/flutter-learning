@@ -66,7 +66,7 @@ class ProfileInfo extends StatelessWidget {
                 user.following.toString(),
                 style: TextStyle(
                   fontSize: 16,
-                  color: CColors.black,
+                  color: Theme.of(context).colorScheme.onSurface,
                   fontWeight: FontWeight.bold,
                 ),
               ),
@@ -80,7 +80,7 @@ class ProfileInfo extends StatelessWidget {
                 user.followers.toString(),
                 style: TextStyle(
                   fontSize: 16,
-                  color: CColors.black,
+                  color: Theme.of(context).colorScheme.onSurface,
                   fontWeight: FontWeight.bold,
                 ),
               ),

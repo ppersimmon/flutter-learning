@@ -108,9 +108,11 @@ const gapH200 = SizedBox(height: Sizes.p200);
 class CColors {
   static const Color grey50 = Colors.white;
   static const Color grey100 = Colors.grey;
+  static const Color avatarBg = Color(0xffeeeeee);
   static const Color grey600 = Color(0xFF757575);
   static const Color black = Colors.black;
   static const Color blue500 = Color(0xff38b6ff);
+  static const Color blue900 = Color(0xff15202b);
   static const Color red = Colors.red;
   static const Color outline = Color.fromRGBO(0, 0, 0, 0.6);
   static const Color transparent = Colors.transparent;

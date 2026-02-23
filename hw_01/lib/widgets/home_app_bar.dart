@@ -1,6 +1,5 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:hw_01/generated/locale_keys.g.dart';
 
@@ -17,12 +16,6 @@ class HomeAppBar extends StatelessWidget {
       pinned: false,
       snap: true,
 
-      systemOverlayStyle: const SystemUiOverlayStyle(
-        statusBarColor: CColors.grey50,
-      ),
-
-      backgroundColor: CColors.grey50,
-
       leading: AppIcon(
         icon: Icons.account_circle_outlined,
         onTap: () {
@@ -36,7 +29,7 @@ class HomeAppBar extends StatelessWidget {
         TextButton(
           onPressed: () {},
           style: TextButton.styleFrom(
-            foregroundColor: CColors.black,
+            foregroundColor: Theme.of(context).colorScheme.onSurface,
             textStyle: const TextStyle(
               fontSize: 16,
               fontWeight: FontWeight.bold,
@@ -51,7 +44,7 @@ class HomeAppBar extends StatelessWidget {
 
       bottom: TabBar(
         indicatorSize: TabBarIndicatorSize.tab,
-        labelColor: CColors.black,
+        labelColor: Theme.of(context).colorScheme.onSurface,
         indicatorColor: CColors.blue500,
         indicatorWeight: Sizes.p2,
         tabs: [

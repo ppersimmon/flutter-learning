@@ -18,7 +18,6 @@ class AccountPage extends StatelessWidget {
     return DefaultTabController(
       length: 6,
       child: Scaffold(
-        backgroundColor: CColors.grey50,
         body: CustomScrollView(
           slivers: [
             const AccountAppBar(),

@@ -1,5 +1,7 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+import 'package:hw_01/models/theme_model.dart';
+import 'package:hw_01/theme/themes.dart';
 import 'package:provider/provider.dart';
 
 import '../pages/home.dart';
@@ -14,24 +16,56 @@ void main() async {
       supportedLocales: [Locale('en')],
       path: 'assets/translations',
       fallbackLocale: Locale('en'),
-      child: ChangeNotifierProvider(
-        create: (context) => PostModel(),
+      child: MultiProvider(
+        providers: [ChangeNotifierProvider(create: (context) => PostModel())],
         child: MyApp(),
       ),
     ),
   );
 }
 
-class MyApp extends StatelessWidget {
+class MyApp extends StatefulWidget {
   const MyApp({super.key});
 
   @override
+  State<MyApp> createState() => _MyAppState();
+}
+
+class _MyAppState extends State<MyApp> {
+  ThemeModel themeChangeProvider = ThemeModel();
+
+  void getCurrentTheme() async {
+    themeChangeProvider.setDarkTheme = (await themeChangeProvider.darkThemePrefs
+        .getTheme());
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    getCurrentTheme();
+  }
+
+  @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      localizationsDelegates: context.localizationDelegates,
-      supportedLocales: context.supportedLocales,
-      debugShowCheckedModeBanner: false,
-      home: const HomePage(),
+    return MultiProvider(
+      providers: [ChangeNotifierProvider.value(value: themeChangeProvider)],
+      child: Consumer<ThemeModel>(
+        builder: (context, themeModel, child) {
+          return MaterialApp(
+            localizationsDelegates: context.localizationDelegates,
+            supportedLocales: context.supportedLocales,
+            debugShowCheckedModeBanner: false,
+            themeMode: themeModel.getDarkTheme
+                ? ThemeMode.dark
+                : ThemeMode.light,
+
+            theme: AppTheme.lightTheme,
+            darkTheme: AppTheme.darkTheme,
+
+            home: const HomePage(),
+          );
+        },
+      ),
     );
   }
 }

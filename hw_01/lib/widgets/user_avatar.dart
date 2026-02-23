@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+
 import '../utils/constants.dart';
 import '../widgets/app_icon.dart';
 
@@ -6,19 +7,16 @@ class UserAvatar extends StatelessWidget {
   final double radius;
   final String? avatarImgUrl;
 
-  const UserAvatar({
-    super.key,
-    this.radius = Sizes.p40,
-    this.avatarImgUrl,
-});
+  const UserAvatar({super.key, this.radius = Sizes.p40, this.avatarImgUrl});
 
   @override
   Widget build(BuildContext context) {
     return CircleAvatar(
       radius: radius,
-      backgroundColor: CColors.grey50,
+      backgroundColor: Theme.of(context).colorScheme.surface,
       child: CircleAvatar(
         radius: radius - Sizes.p4,
+        backgroundColor: CColors.avatarBg,
         backgroundImage: avatarImgUrl != null
             ? AssetImage(avatarImgUrl!)
             : null,

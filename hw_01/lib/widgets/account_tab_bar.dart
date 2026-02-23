@@ -15,7 +15,7 @@ class AccountTabBar extends StatelessWidget {
       ),
       child: TabBar(
         isScrollable: true,
-        labelColor: Colors.black,
+        labelColor: Theme.of(context).colorScheme.onSurface,
         unselectedLabelColor: Colors.grey,
         indicatorColor: Colors.lightBlue,
         indicatorWeight: 3.0,
