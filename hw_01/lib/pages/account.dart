@@ -31,21 +31,28 @@ class AccountPage extends StatelessWidget {
               ),
             ),
 
-            if (displayPosts.isEmpty)
-              const SliverToBoxAdapter(
-                child: Padding(
-                  padding: EdgeInsets.only(top: Sizes.p40),
-                  child: Center(child: CircularProgressIndicator()),
-                ),
-              )
-            else
-              SliverList(
-                delegate: SliverChildBuilderDelegate((context, index) {
-                  final post = displayPosts[index];
+            Consumer<PostModel>(
+              builder: (context, postModel, child) {
+                final displayPosts = postModel.posts;
 
-                  return PostItem(post: post);
-                }, childCount: displayPosts.length),
-              ),
+                if (displayPosts.isEmpty) {
+                  const SliverToBoxAdapter(
+                    child: Padding(
+                      padding: EdgeInsets.only(top: Sizes.p40),
+                      child: Center(child: CircularProgressIndicator()),
+                    ),
+                  );
+                }
+
+                return SliverList(
+                  delegate: SliverChildBuilderDelegate((context, index) {
+                    final post = displayPosts[index];
+
+                    return PostItem(post: post);
+                  }, childCount: displayPosts.length),
+                );
+              },
+            ),
             const SliverToBoxAdapter(child: gapH40),
           ],
         ),

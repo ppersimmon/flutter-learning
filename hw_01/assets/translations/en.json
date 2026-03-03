@@ -25,5 +25,6 @@
 
   "empty_string": "",
   "divider": " · ",
-  "error": "Error"
+  "error": "Error",
+  "title_post": "Post"
 }

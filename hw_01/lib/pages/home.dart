@@ -1,35 +1,28 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
+import 'package:go_router/go_router.dart';
 
 import '../mock_data/mock_data.dart';
 import '../utils/constants.dart';
 import '../widgets/app_icon.dart';
 import '../widgets/drawer.dart';
-import '../widgets/home_stripe.dart';
 
 class HomePage extends StatefulWidget {
-  const HomePage({super.key});
+  final StatefulNavigationShell navigationShell;
+  const HomePage({super.key, required this.navigationShell});
 
   @override
   State<HomePage> createState() => _HomePageState();
 }
 
 class _HomePageState extends State<HomePage> {
-  int _selectedIndex = 0;
   bool _isBottomBarVisible = true;
 
-  List<Widget> get _pages => const [
-    HomeStripe(),
-    Scaffold(),
-    Scaffold(),
-    Scaffold(),
-  ];
-
   void _onItemTapped(int index) {
-    setState(() {
-      _selectedIndex = index;
-      _isBottomBarVisible = true;
-    });
+    widget.navigationShell.goBranch(
+      index,
+      initialLocation: index == widget.navigationShell.currentIndex,
+    );
   }
 
   @override
@@ -47,11 +40,13 @@ class _HomePageState extends State<HomePage> {
           }
           return true;
         },
-        child: IndexedStack(index: _selectedIndex, children: _pages),
+        child: widget.navigationShell,
       ),
 
       floatingActionButton: AnimatedScale(
-        scale: _isBottomBarVisible && _selectedIndex == 0 ? Sizes.p1 : Sizes.p0,
+        scale: _isBottomBarVisible && widget.navigationShell.currentIndex == 0
+            ? Sizes.p1
+            : Sizes.p0,
         duration: const Duration(milliseconds: 200),
 
         child: FloatingActionButton(
@@ -70,7 +65,7 @@ class _HomePageState extends State<HomePage> {
           children: [
             BottomNavigationBar(
               type: BottomNavigationBarType.fixed,
-              currentIndex: _selectedIndex,
+              currentIndex: widget.navigationShell.currentIndex,
               onTap: _onItemTapped,
               showSelectedLabels: false,
               showUnselectedLabels: false,

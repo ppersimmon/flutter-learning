@@ -23,5 +23,6 @@ abstract class  LocaleKeys {
   static const empty_string = 'empty_string';
   static const divider = 'divider';
   static const error = 'error';
+  static const title_post = 'title_post';
 
 }

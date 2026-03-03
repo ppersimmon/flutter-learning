@@ -4,7 +4,7 @@ import 'package:hw_01/models/theme_model.dart';
 import 'package:hw_01/theme/themes.dart';
 import 'package:provider/provider.dart';
 
-import '../pages/home.dart';
+import './router/app_router.dart';
 import 'models/post_model.dart';
 
 void main() async {
@@ -51,7 +51,9 @@ class _MyAppState extends State<MyApp> {
       providers: [ChangeNotifierProvider.value(value: themeChangeProvider)],
       child: Consumer<ThemeModel>(
         builder: (context, themeModel, child) {
-          return MaterialApp(
+          return MaterialApp.router(
+            routerConfig: appRouter,
+
             localizationsDelegates: context.localizationDelegates,
             supportedLocales: context.supportedLocales,
             debugShowCheckedModeBanner: false,
@@ -61,8 +63,6 @@ class _MyAppState extends State<MyApp> {
 
             theme: AppTheme.lightTheme,
             darkTheme: AppTheme.darkTheme,
-
-            home: const HomePage(),
           );
         },
       ),

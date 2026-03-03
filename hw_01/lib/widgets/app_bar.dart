@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 
 import '../utils/constants.dart';
 import 'account_header.dart';
@@ -20,7 +21,7 @@ class AccountAppBar extends StatelessWidget {
           isFilled: true,
           color: CColors.grey50,
           onTap: () {
-            Navigator.of(context).pop();
+            context.pop();
           },
         ),
       ),

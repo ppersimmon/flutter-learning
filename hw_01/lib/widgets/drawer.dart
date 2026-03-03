@@ -1,11 +1,12 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:hw_01/generated/locale_keys.g.dart';
 import 'package:hw_01/mock_data/user_profile.dart';
 import 'package:hw_01/models/theme_model.dart';
 import 'package:provider/provider.dart';
 
-import '../pages/account.dart';
+import '../router/app_router.dart';
 import 'app_icon.dart';
 import 'user_avatar.dart';
 
@@ -48,10 +49,8 @@ class NavDrawer extends StatelessWidget {
                   leading: const AppIcon(icon: Icons.person_outline),
                   title: Text(LocaleKeys.title_profile.tr()),
                   onTap: () {
-                    Navigator.pop(context);
-                    Navigator.of(context).push(
-                      MaterialPageRoute(builder: (context) => AccountPage()),
-                    );
+                    context.pop();
+                    context.pushNamed(AppPages.account.name);
                   },
                 ),
               ],
