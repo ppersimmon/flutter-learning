@@ -1,0 +1,22 @@
+# Mac OS junk
+.DS_Store
+
+# Windows junk
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+
+# VS Code settings (Personal)
+.vscode/
+
+# Android Studio / IntelliJ settings (Personal)
+.idea/
+*.iml
+*.iws
+*.ipr
+
+# Flutter/Dart cache (Just in case you run commands in root)
+.dart_tool/
+build/
+.pub-cache/
+pubspec.lock
